@@ -2,23 +2,16 @@ package com.vincenzomerola.user_ms.model;
 
 import java.util.Date;
 
-import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties.Data;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import com.vincenzomerola.user_ms.RoleEnum.Role;
 
 @Entity
 @Table(name = "users")
@@ -37,8 +30,11 @@ public class User {
     @Size(max = 100)
     @Column(unique = true)
 	private String email;
-	private String password;
-	private String role;
+
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Role role;
 	
 	@CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
@@ -52,14 +48,13 @@ public class User {
 
 	
 	public User() {};
-	
-	public User (String fullName,String email, String password, String role) {
+
+	public User (String fullName,String email, String password, Role role) {
 		this.fullName =  fullName;
 		this.email = email;
-		this.password = password;
 		this.role = role;
 	}
-	
+
 	
 	public Long getId() {
 		return id;
@@ -73,16 +68,11 @@ public class User {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getRole() {
+
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	public Date getCreatedAt() {
@@ -108,5 +98,15 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", fullName='" + fullName + '\'' +
+				", email='" + email + '\'' +
+				", createdAt=" + createdAt +
+				", updatedAt=" + updatedAt +
+				", role=" + role +
+				'}';
+	}
 }
