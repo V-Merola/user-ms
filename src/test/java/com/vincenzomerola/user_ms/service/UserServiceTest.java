@@ -6,6 +6,7 @@ import com.vincenzomerola.user_ms.dto.UserDTO;
 import com.vincenzomerola.user_ms.exception.UserNotFoundException;
 import com.vincenzomerola.user_ms.model.User;
 import com.vincenzomerola.user_ms.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,7 +26,8 @@ public class UserServiceTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    public UserServiceTest() {
+    @BeforeEach
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 

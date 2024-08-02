@@ -18,7 +18,7 @@ package com.vincenzomerola.user_ms.service;
  *  l'oggetto UserDTO aggiornato.
  */
 
-import com.vincenzomerola.user_ms.client.AuthServiceClient;
+//import com.vincenzomerola.user_ms.client.AuthServiceClient;
 import com.vincenzomerola.user_ms.dto.UpdateUserRequest;
 import com.vincenzomerola.user_ms.dto.UserDTO;
 import com.vincenzomerola.user_ms.exception.UserNotFoundException;
@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    AuthServiceClient authServiceClient;
+ //   @Autowired
+ //   AuthServiceClient authServiceClient;
 
     /*
      *
