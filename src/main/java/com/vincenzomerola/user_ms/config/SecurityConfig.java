@@ -42,8 +42,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/public/**").permitAll()
-                                .anyRequest().authenticated()
+                        .requestMatchers("/users/public/**").permitAll()  // Percorsi pubblici
+                       // .requestMatchers("/users/**").authenticated()  // Altri percorsi richiedono autenticazione
+                        .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
