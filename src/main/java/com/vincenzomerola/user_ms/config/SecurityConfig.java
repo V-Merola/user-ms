@@ -43,6 +43,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                         .requestMatchers("/users/public/**").permitAll()  // Percorsi pubblici
+                        .requestMatchers("/actuator/**").permitAll()  // Accesso pubblico all'endpoint di salute
+
                        // .requestMatchers("/users/**").authenticated()  // Altri percorsi richiedono autenticazione
                         .anyRequest().authenticated()
                 )
